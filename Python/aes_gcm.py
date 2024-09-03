@@ -1,7 +1,7 @@
 from time import sleep
 from base64 import b64encode, b64decode
-from Crypto.Cipher import AES
-from Crypto.Random import get_random_bytes
+import configs as configurations
+import os
 
 
 plain_text = "CESAR School" # default plain_text
@@ -20,7 +20,7 @@ def encrpyt(plain_text: str = plain_text, debug_mode: int = 0) -> dict: # return
     }
 
     if debug_mode:
-        print('\n')
+        print("\n")
         for k, v in result.items():
             print(f"{k}: {v}")
 
@@ -44,19 +44,39 @@ def decrypt(cipher: dict):
 
 
 if __name__ == "__main__":
-    cipher_object = encrpyt(plain_text, 1)
-    decrypt(cipher_object)
+    configurations.checkLibraries.checkInterferingLibraries()
+    input("\npress enter to continue and clear the terminal")
+    os.system('cls' if os.name == 'nt' else 'clear')
 
+    # These can only be imported if the library is installed
+    from Crypto.Cipher import AES 
+    from Crypto.Random import get_random_bytes
+    
 
     while True: # Que falta faz um do while
-        path = int(input("\n[0] - Exit Program\n[1] - Change original message and try again\nInput: "))
+        path = int(input("\n[0] - Exit Program\n[1] - Default path \n[2] - Change original message and try again\nInput: "))
         
         if path == 1:
+            cipher_object = encrpyt(plain_text, 1) # default 
+            decrypt(cipher_object)
+            input("\npress enter to continue and clear the terminal")
+            os.system('cls' if os.name == 'nt' else 'clear')
+
+        elif path == 2:
             plain_text = input("New message: ")
             cipher_object = encrpyt(plain_text, 1)
             decrypt(cipher_object)
+            input("\npress enter to continue and clear the terminal")
+            os.system('cls' if os.name == 'nt' else 'clear')
+
         elif path == 0:
+            print("exiting", end='')
+            for i in range(3):
+                sleep(.25)
+                print('.', end='', flush=True)
+            os.system('cls' if os.name == 'nt' else 'clear')
             break
+
         else:
             for i in range(3):
                 print('.', end='', flush=True)
