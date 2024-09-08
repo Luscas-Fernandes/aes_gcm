@@ -19,16 +19,15 @@ int main()
     scanf(" %s", a);
 
     block = block_text(a);
+    sub_bytes(block);
 
 
     #ifdef DEBUG
-        printf("Text is multiple of 16 bytes!\n");
-
         for(int i = 0; i < 4; i++)
         {
             for(int j = 0; j < 4; j++)
                 {
-                    printf("block[%d][%d]: %c\t", j, i, block[j][i]);                 
+                    printf("block[%d][%d]: %02x\t", j, i, block[j][i]);                 
                 }
             printf("\n");
         }
