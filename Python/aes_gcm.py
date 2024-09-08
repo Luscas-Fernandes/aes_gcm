@@ -26,7 +26,7 @@ def encrpyt(plain_text: str = plain_text, debug_mode: int = 0) -> dict: # return
 
     return result
 
-
+# assignments outside of the try identation
 def decrypt(cipher: dict):
     try:
         key = b64decode(cipher['key'])

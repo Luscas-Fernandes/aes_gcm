@@ -112,5 +112,3 @@ unsigned char **sub_bytes(unsigned char **block_text)
 
 
 // Auxiliary func
-
-void swap()
